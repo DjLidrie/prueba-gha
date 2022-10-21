@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: prueba-gha
-          image: udecdj2022/prueba-gha:latest
+          image: udecdj2022/prueba-gha2:latest
             #imagePullPolicy: Never
           ports:
             - containerPort: 80
