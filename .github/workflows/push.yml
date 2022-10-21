@@ -15,12 +15,7 @@ jobs:
           #repository: ${{ udecdj2022/prueba-gha:v1 }}
         tag_with_ref: true
         tag_with_sha: true
-        tags: ${{ github.sha }}
-  deploy:        
-    name: deploy to cluster
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
+        tags: ${{ github.sha }}        
     - name: deploy to cluster
       uses: steebchen/kubectl@v2.0.0
       with: # defaults to latest kubectl binary version
