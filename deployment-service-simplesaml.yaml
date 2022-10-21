@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prueba-gha
+spec:
+  selector:
+   matchLabels:
+    app: prueba-gha
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: prueba-gha
+        role: prueba-gha
+    spec:
+      containers:
+        - name: prueba-gha
+          image: udecdj2022/prueba-gha:9341a6c89d17975bcb024eea553a5ca0924b9d3c
+            #imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+              name: prueba-gha
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prueba-gha
+  labels:
+    app: prueba-gha
+spec:
+  selector:
+   app: prueba-gha
+  type: LoadBalancer
+  ports:
+   - name: http
+     port: 80
+     protocol: TCP
+     targetPort: 80
+  selector:
+    role: prueba-gha
+
