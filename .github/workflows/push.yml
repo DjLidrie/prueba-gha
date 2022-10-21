@@ -40,9 +40,10 @@ jobs:
           config: ${{ secrets.KUBE_CONFIG_DATA }}
             #command: set image --record deployment/prueba-gha prueba-gha=${{ github.repository }}:${{ github.sha }}
           command: set image --record deployment/prueba-gha prueba-gha=${{ github.repository }}:latest
-            #- name: verify deployment
-            #uses: steebchen/kubectl@v2.0.0
-            #with:
-            #config: ${{ secrets.KUBE_CONFIG_DATA }}
+            
+    - name: verify deployment
+      uses: steebchen/kubectl@v2.0.0
+      with:
+          config: ${{ secrets.KUBE_CONFIG_DATA }}
             #version: v1.21.0 # specify kubectl binary version explicitly
-            #command: rollout status deployment/prueba-gha
+          command: rollout status deployment/prueba-gha
