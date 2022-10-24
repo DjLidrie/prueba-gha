@@ -15,7 +15,7 @@ jobs:
     - name: Build and push to Docker Hub
       uses: docker/login-action@v2    
       with:
-          username: ${{ secrets.DOCKER_USERNAME }}
+          username: ${{ secrets.DOCKER_USERNAME }}myrotvorets/kubectl-action
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: ${{ github.repository }}
           #repository: ${{ udecdj2022/prueba-gha:v1 }}
@@ -35,7 +35,7 @@ jobs:
           tags: ${{ secrets.DOCKER_USERNAME }}/prueba-gha:latest
 
     - uses: actions/checkout@v2
-    - name: deploy to cluster
+    - name: deploy to cluster in kubernetes
       uses: myrotvorets/kubectl-action@2.0.0
       with: 
           config: ${{ secrets.KUBE_CONFIG_DATA }}
@@ -43,9 +43,18 @@ jobs:
             #command: set image --record deployment/prueba-gha prueba-gha=${{ github.repository }}:${{ github.sha }}
           args: set image --record deployment/prueba-gha prueba-gha=${{ github.repository }}:latest
             
-    - name: verify deployment
+    - name: restart deployment in kubernetes
       uses: myrotvorets/kubectl-action@2.0.0
       with:
           config: ${{ secrets.KUBE_CONFIG_DATA }}
           version: latest 
           args: rollout restart deployment/prueba-gha
+    
+    - name: Check deployment in kubernetes
+      uses: myrotvorets/kubectl-action@2.0.0
+      with:
+          config: ${{ secrets.KUBE_CONFIG_DATA }}
+          version: latest
+          args: rollout status deployment/prueba-gha
+
+
