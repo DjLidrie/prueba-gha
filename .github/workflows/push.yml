@@ -48,4 +48,4 @@ jobs:
       with:
           config: ${{ secrets.KUBE_CONFIG_DATA }}
           version: latest 
-          args: rollout undo deployment/prueba-gha
+          args: rollout restart deployment/prueba-gha
