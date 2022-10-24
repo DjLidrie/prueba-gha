@@ -39,7 +39,7 @@ jobs:
       with: # defaults to latest kubectl binary version
           config: ${{ secrets.KUBE_CONFIG_DATA }}
             #command: set image --record deployment/prueba-gha prueba-gha=${{ github.repository }}:${{ github.sha }}
-          command: set image --record deployment/prueba-gha container=${{ github.repository }}:latest
+          command: set image --record deployment/prueba-gha prueba-gha=${{ github.repository }}:latest
             
     - name: verify deployment
       uses: steebchen/kubectl@v2.0.0
