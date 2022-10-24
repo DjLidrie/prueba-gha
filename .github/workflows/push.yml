@@ -41,7 +41,7 @@ jobs:
           config: ${{ secrets.KUBE_CONFIG_DATA }}
           version: latest  
             #command: set image --record deployment/prueba-gha prueba-gha=${{ github.repository }}:${{ github.sha }}
-          args: set image --record deployment/prueba-gha prueba-gha=${{ github.repository }}:latest
+          args: set image --record deployment/prueba-gha prueba-gha=${{ github.repository }}:${{ github.sha }}
             
     - name: verify deployment
       uses: myrotvorets/kubectl-action@2.0.0
