@@ -48,7 +48,7 @@ jobs:
       with:
           config: ${{ secrets.KUBE_CONFIG_DATA }}
           version: latest 
-          args: rollout restart deployment/prueba-gha
+          args: rollout reload deployment/prueba-gha
     
     - name: Check deployment in kubernetes
       uses: myrotvorets/kubectl-action@2.0.0
