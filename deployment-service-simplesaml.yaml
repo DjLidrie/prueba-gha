@@ -4,8 +4,8 @@ metadata:
   name: prueba-gha
 spec:
   selector:
-   matchLabels:
-    app: prueba-gha
+    #matchLabels:
+      app: prueba-gha
   replicas: 1
   template:
     metadata:

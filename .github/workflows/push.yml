@@ -41,20 +41,22 @@ jobs:
           config: ${{ secrets.KUBE_CONFIG_DATA }}
           version: latest  
             #command: set image --record deployment/prueba-gha prueba-gha=${{ github.repository }}:${{ github.sha }}
-          args: set image --record deployment/prueba-gha prueba-gha=${{ github.repository }}:latest
+          args: set image --record deployment.apps/prueba-gha prueba-gha=udecdj2022/prueba-gha:latest
             
     - name: restart deployment in kubernetes
       uses: myrotvorets/kubectl-action@2.0.0
       with:
           config: ${{ secrets.KUBE_CONFIG_DATA }}
           version: latest 
-          args: rollout reload deployment/prueba-gha
+            #args: edit deployment.apps/prueba-gha  
+          args: rollout status deployment.apps/prueba-gha
+           
     
-    - name: Check deployment in kubernetes
-      uses: myrotvorets/kubectl-action@2.0.0
-      with:
-          config: ${{ secrets.KUBE_CONFIG_DATA }}
-          version: latest
-          args: rollout status deployment/prueba-gha
+            #- name: Check deployment in kubernetes
+            #uses: myrotvorets/kubectl-action@2.0.0
+            #with:
+            #config: ${{ secrets.KUBE_CONFIG_DATA }}
+            #version: latest
+            #args: rollout status deployment/prueba-gha
 
 
