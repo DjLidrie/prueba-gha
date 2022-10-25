@@ -17,11 +17,7 @@ jobs:
       with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: ${{ github.repository }}
-          #repository: ${{ udecdj2022/prueba-gha:v1 }}
-          #tag_with_ref: true
-          #tag_with_sha: true
-          #tags: ${{ github.sha }}        
+          repository: ${{ github.repository }}                
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
