@@ -33,7 +33,16 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/prueba-gha:latest
-          tags: ${{ github.sha }}  
+          tags: ${{ github.sha }}
+ 
+    - name: Build and push to Docker Hub in SHA
+      uses: docker/build-push-action@v3
+      with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/prueba-gha:${{ github.sha }}
+        
 
     - uses: actions/checkout@v2
     - name: deploy to cluster in kubernetes
