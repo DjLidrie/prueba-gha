@@ -50,7 +50,7 @@ jobs:
           config: ${{ secrets.KUBE_CONFIG_DATA }}
           version: latest  
             #command: set image --record deployment/prueba-gha prueba-gha=${{ github.repository }}:${{ github.sha }}
-          args: set image --record deployment.apps/prueba-gha prueba-gha=udecdj2022/prueba-gha:latest
+          args: set image --record deployment.apps/prueba-gha prueba-gha=${{ secrets.DOCKER_USERNAME }}/image@sha:${{ github.sha }}
             
     - name: restart deployment in kubernetes
       uses: myrotvorets/kubectl-action@2.0.0
