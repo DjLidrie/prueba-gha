@@ -6,6 +6,11 @@ spec:
   selector:
     matchLabels:
       app: prueba-gha
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
   replicas: 1
   template:
     metadata:
