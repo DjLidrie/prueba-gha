@@ -29,8 +29,17 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/prueba-gha:latest
- 
-               
+
+
+    - uses: actions/checkout@v2
+    - name: DEPLOY TO CLUSTER
+      uses: myrotvorets/kubectl-action@2.0.0
+      with:
+        config: ${{ secrets.KUBE_CONFIG_DATA }}
+        version: latest
+        args: set image --record deployment/prueba-gha container=${{ secrets.DOCKER_USERNAME }}/prueba-gha:latest
+    
+
     - name: REINICIAR DEPLOYMENT
       uses: myrotvorets/kubectl-action@2.0.0
       with:
